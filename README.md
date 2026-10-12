@@ -35,18 +35,15 @@ git clone https://github.com/genzo-dev/oficina-jest.git
 git clone git@github.com:genzo-dev/oficina-jest.git
 
 # 2 - Altere para a branch escolhida:
-git checkout -b branch-escolhida origin/branch-escolhida
+git switch branch-escolhida
 ```
 
-| Branch                    | Descrição                                                                                                                                |
-| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| 01-initial-jest-setup     | Aprenda a instalar e configurar um ambiente de testes com Jest, além de treinar o padrão AAA para criação de testes                      |
-| 02-first-unit-test        | Crie seu primeiro teste unitário com Jest seguindo as melhores práticas e entendendo como isso é cobrado                                 |
-| 03-first-integration-test | Crie seu primeiro teste de integração com Jest seguindo as melhores práticas e qual sua diferença dos testes unitários                   |
-| 04-test-environments      | Entenda como funcionam os ambientes de testes e como eles podem existir dentro do seu software                                           |
-| 05-automated-tests        | Veja como funciona a automatização de testes por meio do conceito de CI/CD e qual sua importância na vida de um software                 |
-| 05-automated-tests-AUX    | Branch auxiliar para que seja possível ver na prática a automatização dos testes e como o CI/CD funciona                                 |
-| EXTRA-frameworks-jest     | Seção extra que contempla como os frameworks lidam e utilizam Jest, focado especialmente no framework [NestJS](https://docs.nestjs.com/) |
+| Branch                | Descrição                                                                                                            |
+| --------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| 01-initial-jest-setup | Aprenda a instalar e configurar um ambiente de testes com Jest, além de treinar o padrão AAA para criação de testes  |
+| 02-unit-test          | Veja exemplos e construa testes unitário com Jest seguindo as melhores práticas e entendendo como isso é cobrado     |
+| 03-integration-test   | Veja exemplos e construa testes de integrção com Jest seguindo as melhores práticas e entendendo como isso é cobrado |
+| 04-ci-with-jest       | Observe como uma pipeline de CI funciona e como ela pode ajudar no desenvolvimento do seu software                   |
 
 ## Autores
 
