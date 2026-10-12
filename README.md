@@ -41,7 +41,7 @@ git checkout -b branch-escolhida origin/branch-escolhida
 | Branch                    | Descrição                                                                                                                                |
 | ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
 | 01-initial-jest-setup     | Aprenda a instalar e configurar um ambiente de testes com Jest, além de treinar o padrão AAA para criação de testes                      |
-| 02-first-unit-test        | Crie seu primeiro teste unitário com Jest seguindo as melhores práticas e entendendo como isso é cobrado                                 |
+| 02-unit-test              | Veja exemplos e crie seu primeiro teste unitário com Jest seguindo as melhores práticas e entendendo como isso é cobrado                 |
 | 03-first-integration-test | Crie seu primeiro teste de integração com Jest seguindo as melhores práticas e qual sua diferença dos testes unitários                   |
 | 04-test-environments      | Entenda como funcionam os ambientes de testes e como eles podem existir dentro do seu software                                           |
 | 05-automated-tests        | Veja como funciona a automatização de testes por meio do conceito de CI/CD e qual sua importância na vida de um software                 |
