@@ -1,52 +1,167 @@
-# Hub da Oficina: Testes com Jest
+# Testes de Integração com Jest
 
-Bem-vindo(a)!!!
+#### Objetivo dessa branch
 
-Esse é seu ponto de partida para nossa oficina, logo abaixo falo mais algunas informações sobre ela:
+A branch `03-integration-test` da oficina de testes com Jest é dividida em duas etapas:
 
-## Objetivo da Oficina
+1. A primeira etapa apresentará exemplos práticos de testes de integração (`user-service.integration.spec.js`).
+2. Na segunda etapa, você colocará em prática os conceitos apresentados anteriormente, completando os testes de integração do serviço `productService.js`.
 
-Esta oficina possui o objetivo de apresentar os testes unitários e de integração, mostrando na prática por que eles são uma exigência fundamental no mercado de desenvolvimento. Utilizando o Jest, vamos sair da teoria e colocar a mão na massa com exercícios práticos e live-coding, capacitando você a aplicar boas práticas de testes nos seus próprios projetos.
+> [!IMPORTANT]
+>
+> O Jest executa sobre o Node.js. Portanto, você precisa ter o Node.js e o npm instalados para executar os exemplos. Para isso, basta acessar a [plataforma oficial do Node.js](https://nodejs.org/pt-br) e seguir os comandos para sua instalação de acordo com a sua máquina.
+>
+> Confirme com:
+> `node -v` e `npm -v` no terminal
 
-#### Propósito desse repositório:
+#### Comece instalando as dependências
 
-A intenção desse repositório se deve unicamente a parte prática da oficina, para isso comece olhando o **[Mapa do Repositório](#mapa-do-repositório)**.
+```bash
+npm install
+```
 
-#### Documentação da Oficina:
+Isso instalará tanto o Jest quanto o `better-sqlite3` para termos um banco de dados real em memória.
 
-Além disso, também existe uma documentação criada e bem organizada, contando com um sumário para te guiar para a parte que mais te interessa e todas as informações necessárias para não se sentir perdido em nenhum momento da oficina. Com essa documentação também é possível ler e estudar tudo o que foi falado durante a oficina com a inclusão de alguns extras.
+## 1ª Etapa — Exemplificando Testes de Integração com Jest
 
-Acesse: [link do Notion](https://app.notion.com/p/Oficina-Jest-3f5bc7f8170180ec85dfdb71c5cfbb9e?source=copy_link) para ver a documentação completa.
+Aqui o Jest já está implementado e configurado. Também utilizaremos o SQLite para verificar a integração entre o serviço, o repositório e o banco de dados.
 
-## Mapa do Repositório
+Para executar os exemplos, utilize:
+
+```bash
+npm run test -- etapa1/user-service.integration.spec.js
+```
+
+Os exemplos de testes de integração estão localizados em `src/etapa1/`.
+
+O arquivo `userRepository.js` implementa as operações de acesso ao banco de dados, enquanto `userService.js` contém as regras de negócio relacionadas aos usuários. Já o arquivo `user-service.integration.spec.js` apresenta os testes que verificam o cadastro, a consulta e o tratamento de erros utilizando os componentes reais.
+
+Para facilitar o entendimento dos exemplos, consulte também o arquivo `JEST_CHEATSHEET.md`, que reúne explicações e exemplos dos principais recursos do Jest utilizados nesta etapa, além de comandos e operações básicas do SQLite.
+
+Observe como os testes utilizam `beforeEach(() => {...})` para preparar um banco de dados em memória antes de cada cenário e `afterEach(() => {...})` para fechar a conexão após sua execução.
+
+### Vamos analisar a saída
+
+Após executar os testes, você verá uma saída semelhante a esta:
+
+```bash
+$ npm test -- etapa1/user-service.integration.spec.js
+
+> test
+> jest etapa1/user-service.integration.spec.js
+
+ PASS  src/etapa1/user-service.integration.spec.js
+  Integration between service, repository and SQLite
+    ✓ should create and persist a user (21 ms)
+    ✓ should return an existing user (2 ms)
+    ✓ should throw when the user does not exist (4 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       3 passed, 3 total
+Snapshots:   0 total
+Time:        3.408 s
+Ran all test suites matching etapa1/user-service.integration.spec.js.
+```
+
+Os resultados indicam que os três cenários foram executados sem falhas.
+
+O objetivo não é apenas verificar se o serviço retorna os dados esperados, mas também validar a interação entre o serviço, o repositório e o banco de dados. Por isso, nos testes de cadastro, consultamos diretamente o banco de dados para confirmar que os registros foram persistidos corretamente.
 
 > [!NOTE]
 >
-> Cada branch abaixo possui seu próprio README.md para te guiar durante o trabalho realizado nela.
-> Recomenda-se lê-lo com atenção.
+> Recomendamos a leitura dos comentários presentes em `user-service.integration.spec.js` e dos arquivos `userService.js` e `userRepository.js` para compreender como os componentes trabalham em conjunto. Caso tenha dúvidas sobre os recursos do Jest utilizados nos testes, consulte também o arquivo `src/etapa1/JEST_CHEATSHEET.md`.
 
-Para acessar a branch basta seguir esses passos:
+## 2ª Etapa — Criando meus primeiros Testes de Integração com Jest
+
+Os conteúdos da **2ª Etapa** estão localizados em `src/etapa2/`.
+
+Nesta etapa, você encontrará o serviço `productService.js`, o repositório `productRepository.js` e uma estrutura inicial de testes no arquivo `product-service.integration.spec.js`.
+
+### Seu desafio
+
+Complete os testes indicados pelos comentários `TODO` em `product-service.integration.spec.js`.
+
+Você deverá implementar testes para os seguintes cenários:
+
+1. Criar um produto e verificar sua persistência no banco de dados.
+2. Consultar um produto existente.
+3. Verificar o erro retornado ao consultar um produto inexistente.
+4. Verificar a rejeição de um produto com preço inválido.
+
+### ⚠️ ATENÇÃO
+
+Os testes de integração devem verificar o funcionamento conjunto dos componentes envolvidos. Portanto, não utilize mocks para simular justamente a integração que cada cenário pretende testar.
+
+Por exemplo, ao testar o cadastro de um produto, não basta verificar se o serviço retorna um objeto com os dados esperados. Você também deve verificar se o registro foi persistido corretamente no banco de dados.
+
+### Como saber se o desafio foi concluído?
+
+Execute os testes para verificar se os cenários estão passando:
 
 ```bash
-# 1 - Faça o git clone desse repositório
-git clone https://github.com/genzo-dev/oficina-jest.git
-
-# se preferir utilizar uma chave SSH, faça:
-git clone git@github.com:genzo-dev/oficina-jest.git
-
-# 2 - Altere para a branch escolhida:
-git checkout -b branch-escolhida origin/branch-escolhida
+npm run test
 ```
 
-| Branch                    | Descrição                                                                                                                                |
-| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| 01-initial-jest-setup     | Aprenda a instalar e configurar um ambiente de testes com Jest, além de treinar o padrão AAA para criação de testes                      |
-| 02-unit-test              | Veja exemplos e crie seu primeiro teste unitário com Jest seguindo as melhores práticas e entendendo como isso é cobrado                 |
-| 03-first-integration-test | Crie seu primeiro teste de integração com Jest seguindo as melhores práticas e qual sua diferença dos testes unitários                   |
-| 04-test-environments      | Entenda como funcionam os ambientes de testes e como eles podem existir dentro do seu software                                           |
-| 05-automated-tests        | Veja como funciona a automatização de testes por meio do conceito de CI/CD e qual sua importância na vida de um software                 |
-| 05-automated-tests-AUX    | Branch auxiliar para que seja possível ver na prática a automatização dos testes e como o CI/CD funciona                                 |
-| EXTRA-frameworks-jest     | Seção extra que contempla como os frameworks lidam e utilizam Jest, focado especialmente no framework [NestJS](https://docs.nestjs.com/) |
+A saída deve ser similar a essa:
+
+```bash
+$ npm run test
+
+> test
+> jest
+
+ PASS  src/etapa2/product-service.integration.spec.js
+ PASS  src/etapa1/user-service.integration.spec.js
+
+Test Suites: 2 passed, 2 total
+Tests:       7 passed, 7 total
+Snapshots:   0 total
+Time:        0.857 s, estimated 1 s
+Ran all test suites.
+```
+
+Em seguida, execute a análise de cobertura para verificar quais partes do código foram exercitadas pelos testes:
+
+```bash
+npm run test:coverage
+```
+
+A saída deve ser similar a essa:
+
+```bash
+$ npm run test:coverage
+
+> test:coverage
+> jest --coverage
+
+ PASS  src/etapa1/user-service.integration.spec.js
+ PASS  src/etapa2/product-service.integration.spec.js
+-----------------------|---------|----------|---------|---------|-------------------
+File                   | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
+-----------------------|---------|----------|---------|---------|-------------------
+All files              |   94.11 |       90 |     100 |   94.11 |
+ etapa1                |   93.75 |     87.5 |     100 |   93.75 |
+  userRepository.js    |     100 |      100 |     100 |     100 |
+  userService.js       |   88.88 |    83.33 |     100 |   88.88 | 8
+ etapa2                |   94.44 |    91.66 |     100 |   94.44 |
+  productRepository.js |     100 |      100 |     100 |     100 |
+  productService.js    |    90.9 |       90 |     100 |    90.9 | 8
+-----------------------|---------|----------|---------|---------|-------------------
+
+Test Suites: 2 passed, 2 total
+Tests:       7 passed, 7 total
+Snapshots:   0 total
+Time:        1.581 s, estimated 2 s
+Ran all test suites.
+```
+
+> O desafio estará concluído quando todos os testes passarem e a execução da cobertura apresentar resultados compatíveis com a implementação.
+>
+> Analise os resultados e verifique se todos os cenários foram contemplados, incluindo os casos de sucesso e de erro.
+
+#### Se precisar de ajuda
+
+Caso tenha dificuldades para completar os testes, consulte a colinha em `src/etapa2/COLINHA.md`, que contém exemplos de implementação dos quatro cenários propostos.
 
 ## Autores
 

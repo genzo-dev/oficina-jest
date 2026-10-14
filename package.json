@@ -1,0 +1,12 @@
+{
+  "devDependencies": {
+    "jest": "^30.5.2"
+  },
+  "scripts": {
+    "test": "jest",
+    "test:coverage": "jest --coverage"
+  },
+  "dependencies": {
+    "better-sqlite3": "^13.0.3"
+  }
+}
